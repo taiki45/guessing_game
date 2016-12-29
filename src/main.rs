@@ -19,8 +19,13 @@ fn main() {
         if input.trim() == "quit" {
             break;
         }
-        let guess: i32 = input.trim().parse()
-            .expect("Please type a number!");;
+        let guess: i32 = match input.trim().parse() {
+            Ok(n) => n,
+            Err(msg) => {
+                println!("{}", msg);
+                continue;
+            },
+        };
 
         println!("You guess {}, and secret is {}", guess, number);
 
