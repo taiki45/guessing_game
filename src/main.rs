@@ -5,7 +5,7 @@ use rand::Rng;
 
 fn main() {
     let mut rng = rand::thread_rng();
-    let number = rng.gen_range::<i32>(1, 10);
+    let number = rng.gen_range::<i32>(1, 2);
 
     println!("Guess number!");
 
@@ -14,11 +14,12 @@ fn main() {
 
     io::stdin().read_line(&mut input)
         .expect("Failed to read line");
-    let guess = input.trim();
+    let guess: i32 = input.trim().parse()
+        .expect("Please type a number!");;
 
     println!("You guess {}, and secret is {}", guess, number);
 
-    if guess == number.to_string() {
+    if guess == number {
         println!("Got answer!");
     } else {
         println!("You got wrong!");
