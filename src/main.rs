@@ -16,6 +16,9 @@ fn main() {
 
         io::stdin().read_line(&mut input)
             .expect("Failed to read line");
+        if input.trim() == "quit" {
+            break;
+        }
         let guess: i32 = input.trim().parse()
             .expect("Please type a number!");;
 
