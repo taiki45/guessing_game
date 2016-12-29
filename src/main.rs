@@ -10,19 +10,24 @@ fn main() {
 
     println!("Guess number!");
 
-    println!("Please input your guess:");
-    let mut input = String::new();
+    loop {
+        println!("Please input your guess:");
+        let mut input = String::new();
 
-    io::stdin().read_line(&mut input)
-        .expect("Failed to read line");
-    let guess: i32 = input.trim().parse()
-        .expect("Please type a number!");;
+        io::stdin().read_line(&mut input)
+            .expect("Failed to read line");
+        let guess: i32 = input.trim().parse()
+            .expect("Please type a number!");;
 
-    println!("You guess {}, and secret is {}", guess, number);
+        println!("You guess {}, and secret is {}", guess, number);
 
-    match number.cmp(&guess) {
-        Ordering::Less => println!("Too big!"),
-        Ordering::Equal => println!("You got the answer!"),
-        Ordering::Greater => println!("Too small!"),
+        match number.cmp(&guess) {
+            Ordering::Less => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You got the answer!");
+                break;
+            },
+            Ordering::Greater => println!("Too small!"),
+        }
     }
 }
