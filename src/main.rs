@@ -1,11 +1,12 @@
 extern crate rand;
 
 use std::io;
+use std::cmp::Ordering;
 use rand::Rng;
 
 fn main() {
     let mut rng = rand::thread_rng();
-    let number = rng.gen_range::<i32>(1, 2);
+    let number = rng.gen_range::<i32>(5, 6);
 
     println!("Guess number!");
 
@@ -19,9 +20,9 @@ fn main() {
 
     println!("You guess {}, and secret is {}", guess, number);
 
-    if guess == number {
-        println!("Got answer!");
-    } else {
-        println!("You got wrong!");
+    match number.cmp(&guess) {
+        Ordering::Less => println!("Too big!"),
+        Ordering::Equal => println!("You got the answer!"),
+        Ordering::Greater => println!("Too small!"),
     }
 }
