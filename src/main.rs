@@ -14,7 +14,8 @@ fn main() {
         println!("Please input your guess:");
         let mut input = String::new();
 
-        io::stdin().read_line(&mut input)
+        io::stdin()
+            .read_line(&mut input)
             .expect("Failed to read line");
         if input.trim() == "quit" {
             break;
@@ -24,7 +25,7 @@ fn main() {
             Err(msg) => {
                 println!("{}", msg);
                 continue;
-            },
+            }
         };
 
         println!("You guess {}, and secret is {}", guess, number);
@@ -34,7 +35,7 @@ fn main() {
             Ordering::Equal => {
                 println!("You got the answer!");
                 break;
-            },
+            }
             Ordering::Greater => println!("Too small!"),
         }
     }
